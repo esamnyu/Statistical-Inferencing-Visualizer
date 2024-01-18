@@ -18,7 +18,7 @@ This project focuses on developing APIs for statistical inferencing methods, inc
 - **Output**: Regression coefficients (slope, intercept), R-squared value.
 - **Visualization**: Compatibility with Plotly for graphing the regression line.
 
-![Randomly Generated Dataset](new_plot.png)
+![Randomly Generated Dataset](https://github.com/esamnyu/Statistical-Inferencing-Visualizer/blob/main/newplot.png)
 
 ---
 

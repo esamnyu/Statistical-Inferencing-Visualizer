@@ -26,12 +26,25 @@ This project focuses on developing APIs for statistical inferencing methods, inc
 - Facilitate users in performing multiple linear regression on datasets with various sizes.
 
 #### Problem Statement
-- Accept datasets with multiple independent variables for computing unique effects on a dependent variable, including multicollinearity checks.
+- Accept datasets with multiple independent variables for computing unique effects on a dependent variable. The API will also provide advanced statistical metrics such as the F-statistic, p-values, and R-squared values to assess the model's fit and significance.
 
 #### Key Features
 - **Input**: Dataset with one dependent and multiple independent variables.
-- **Output**: Regression coefficients for each variable, overall model fit statistics.
-- **Visualization**: Multi-dimensional data representation compatibility.
+- **Output**: 
+  - Regression coefficients for each variable.
+  - Overall model fit statistics including:
+    - F-statistic: To assess the overall significance of the regression model.
+    - p-values: For each coefficient to test the hypotheses about the relationship of each independent variable to the dependent variable.
+    - R-squared value: To indicate the proportion of the variance in the dependent variable that is predictable from the independent variables.
+- **Visualization**: Compatibility with visualization tools for multi-dimensional data representation and the ability to plot regression diagnostics.
+
+---
+
+## Additional Considerations
+- **Ease of Use**: Focus on user-friendly interfaces and documentation.
+- **Error Handling**: Graceful management of exceptions and errors.
+- **Extensibility**: Design with potential future integration with more complex models (like neural networks) in mind.
+
 
 ---
 

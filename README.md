@@ -28,7 +28,7 @@ Visualizations of datasets of different sizes used for Simple Linear Regression:
 ![Medium Dataset](images/new_plot_medium.png)
 
 ##### Large Dataset (10000 observations)
-![Large Dataset](images/new_plot_large.png)
+![Large Dataset](https://github.com/esamnyu/Statistical-Inferencing-Visualizer/blob/main/simple_linear_regression/test_data_large.json))
 
 ---
 

@@ -18,7 +18,17 @@ This project focuses on developing APIs for statistical inferencing methods, inc
 - **Output**: Regression coefficients (slope, intercept), R-squared value.
 - **Visualization**: Compatibility with Plotly for graphing the regression line.
 
-![Randomly Generated Dataset](https://github.com/esamnyu/Statistical-Inferencing-Visualizer/blob/main/newplot.png)
+#### Dataset Visualizations
+Visualizations of datasets of different sizes used for Simple Linear Regression:
+
+##### Small Dataset (50 observations)
+![Small Dataset](images/new_plot_small.png)
+
+##### Medium Dataset (1000 observations)
+![Medium Dataset](images/new_plot_medium.png)
+
+##### Large Dataset (10000 observations)
+![Large Dataset](images/new_plot_large.png)
 
 ---
 

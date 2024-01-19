@@ -1,6 +1,10 @@
 import requests
 import json
 import plotly.io as pio
+import os
+
+# Full path to the images directory
+images_directory = "/Users/ethansam/Documents/GitHub/Statistical-Inferencing-Visualizer/simple_linear_regression/images"
 
 # Ask the user for the size of the dataset they want to test
 size_input = input("Enter the dataset size (small=50, medium=1000, large=10000): ").lower()
@@ -27,6 +31,10 @@ with open(file_name, 'r') as file:
 # Send POST request to your API
 response = requests.post(url, json=json_data)
 
+# Check if the images directory exists, if not create it
+if not os.path.exists(images_directory):
+    os.makedirs(images_directory)
+
 # Check the status code of the response
 if response.status_code == 200:
     # If response is successful, extract data
@@ -37,9 +45,16 @@ if response.status_code == 200:
     print(f"Intercept: {response_data['intercept']}")
     print(f"R-squared: {response_data['r_squared']}")
 
-    # Convert the plot JSON to a Plotly figure and display it
+    # Convert the plot JSON to a Plotly figure
     fig = pio.from_json(response_data['plot'])
-    fig.show()
+    
+    # Save the figure to the images directory with the appropriate naming convention
+    image_path = os.path.join(images_directory, f"newplot_{size_input}.png")
+    fig.write_image(image_path)
+    print(f"Plot image saved to {image_path}")
+
+    # Optionally, display the figure
+    # fig.show()
 
 else:
     # If response is not successful, print the status code and response text

@@ -2,23 +2,48 @@ import pandas as pd
 import numpy as np
 import json
 
-# Generating a simple dataset
-np.random.seed(0)
-X = 2.5 * np.random.randn(100) + 1.5   # Array of 100 values with mean = 1.5, stddev = 2.5
-res = 0.5 * np.random.randn(100)       # Generate 100 residual terms
-Y = 2 + 0.3 * X + res                  # Actual values of Y
+# Function to generate datasets of various sizes
+def generate_dataset(size):
+    np.random.seed(0)
+    X = 2.5 * np.random.randn(size) + 1.5   # Array of 'size' values with mean = 1.5, stddev = 2.5
+    res = 0.5 * np.random.randn(size)       # Generate 'size' residual terms
+    Y = 2 + 0.3 * X + res                   # Actual values of Y
+    
+    # Creating a pandas DataFrame
+    df = pd.DataFrame({
+        'X': X,
+        'Y': Y
+    })
+    
+    # Converting the DataFrame to a JSON string
+    json_data = df.to_json(orient='records')
+    
+    # Return the JSON data
+    return json_data
 
-# Creating a pandas DataFrame
-df = pd.DataFrame({
-    'X': X,
-    'Y': Y
-})
+# User input for dataset size
+while True:
+    size_input = input("Enter the dataset size (small=50, medium=1000, large=10000): ").lower()
+    if size_input == 'small':
+        size = 50
+        break
+    elif size_input == 'medium':
+        size = 1000
+        break
+    elif size_input == 'large':
+        size = 10000
+        break
+    else:
+        print("Invalid input. Please enter 'small', 'medium', or 'large'.")
 
-# Converting the DataFrame to a JSON string
-json_data = df.to_json(orient='records')
+# Generate the selected dataset
+json_data = generate_dataset(size)
 
-# Saving to a file (optional)
-with open('test_data.json', 'w') as file:
+# File name based on selected size
+file_name = f"test_data_{size_input}.json"
+
+# Saving to a file
+with open(file_name, 'w') as file:
     file.write(json_data)
 
-# json_data now can be used as an input for your API
+print(f"Generated {size_input} dataset and saved to {file_name}.")

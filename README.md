@@ -22,13 +22,13 @@ This project focuses on developing APIs for statistical inferencing methods, inc
 Visualizations of datasets of different sizes used for Simple Linear Regression:
 
 ##### Small Dataset (50 observations)
-![Small Dataset](images/new_plot_small.png)
+![Small Dataset](https://github.com/esamnyu/Statistical-Inferencing-Visualizer/blob/main/simple_linear_regression/images/newplot_small.png)
 
 ##### Medium Dataset (1000 observations)
-![Medium Dataset](images/new_plot_medium.png)
+![Medium Dataset](https://github.com/esamnyu/Statistical-Inferencing-Visualizer/blob/main/simple_linear_regression/images/newplot_medium.png)
 
 ##### Large Dataset (10000 observations)
-![Large Dataset](https://github.com/esamnyu/Statistical-Inferencing-Visualizer/blob/main/simple_linear_regression/test_data_large.json))
+![Large Dataset](https://github.com/esamnyu/Statistical-Inferencing-Visualizer/blob/main/simple_linear_regression/images/newplot_large.png)
 
 ---
 

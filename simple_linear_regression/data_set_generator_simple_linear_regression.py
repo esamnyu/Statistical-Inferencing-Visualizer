@@ -1,25 +1,9 @@
-import pandas as pd
-import numpy as np
+from statlib.data_preprocessing import generate_synthetic_data
 import json
 
-# Function to generate datasets of various sizes
-def generate_dataset(size):
-    np.random.seed(0)
-    X = 2.5 * np.random.randn(size) + 1.5   # Array of 'size' values with mean = 1.5, stddev = 2.5
-    res = 0.5 * np.random.randn(size)       # Generate 'size' residual terms
-    Y = 2 + 0.3 * X + res                   # Actual values of Y
-    
-    # Creating a pandas DataFrame
-    df = pd.DataFrame({
-        'X': X,
-        'Y': Y
-    })
-    
-    # Converting the DataFrame to a JSON string
-    json_data = df.to_json(orient='records')
-    
-    # Return the JSON data
-    return json_data
+# Function to convert DataFrame to JSON
+def dataframe_to_json(df):
+    return df.to_json(orient='records')
 
 # User input for dataset size
 while True:
@@ -36,8 +20,11 @@ while True:
     else:
         print("Invalid input. Please enter 'small', 'medium', or 'large'.")
 
-# Generate the selected dataset
-json_data = generate_dataset(size)
+# Generate the selected dataset using the function from your statlib
+df = generate_synthetic_data(size)
+
+# Convert the DataFrame to JSON
+json_data = dataframe_to_json(df)
 
 # File name based on selected size
 file_name = f"test_data_{size_input}.json"

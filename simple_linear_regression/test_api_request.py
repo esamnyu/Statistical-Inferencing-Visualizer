@@ -3,8 +3,9 @@ import json
 import plotly.io as pio
 import os
 
-# Full path to the images directory
+# Paths to the images and data directories
 images_directory = "/Users/ethansam/Documents/GitHub/Statistical-Inferencing-Visualizer/simple_linear_regression/images"
+data_directory = "/Users/ethansam/Documents/GitHub/Statistical-Inferencing-Visualizer/simple_linear_regression/data"
 
 # Ask the user for the size of the dataset they want to test
 size_input = input("Enter the dataset size (small=50, medium=1000, large=10000): ").lower()
@@ -15,11 +16,11 @@ file_map = {
 }
 
 # Check if the input is valid and get the corresponding filename
-if size_input in file_map:
-    file_name = file_map[size_input]
-else:
+if size_input not in file_map:
     print("Invalid input. Please enter 'small', 'medium', or 'large'.")
     exit()
+
+file_name = os.path.join(data_directory, file_map[size_input])
 
 # URL of the API endpoint
 url = 'http://127.0.0.1:5000/linear_regression'
@@ -28,35 +29,25 @@ url = 'http://127.0.0.1:5000/linear_regression'
 with open(file_name, 'r') as file:
     json_data = json.load(file)
 
+# Ensure the images directory exists
+os.makedirs(images_directory, exist_ok=True)
+
 # Send POST request to your API
 response = requests.post(url, json=json_data)
 
-# Check if the images directory exists, if not create it
-if not os.path.exists(images_directory):
-    os.makedirs(images_directory)
-
 # Check the status code of the response
 if response.status_code == 200:
-    # If response is successful, extract data
+    # Process the successful response
     response_data = response.json()
+    print(f"Slope: {response_data['slope']}\nIntercept: {response_data['intercept']}\nR-squared: {response_data['r_squared']}")
 
-    # Print slope, intercept, and R-squared values
-    print(f"Slope: {response_data['slope']}")
-    print(f"Intercept: {response_data['intercept']}")
-    print(f"R-squared: {response_data['r_squared']}")
-
-    # Convert the plot JSON to a Plotly figure
+    # Convert the plot JSON to a Plotly figure and save the image
     fig = pio.from_json(response_data['plot'])
-    
-    # Save the figure to the images directory with the appropriate naming convention
     image_path = os.path.join(images_directory, f"newplot_{size_input}.png")
     fig.write_image(image_path)
     print(f"Plot image saved to {image_path}")
-
     # Optionally, display the figure
     # fig.show()
-
 else:
-    # If response is not successful, print the status code and response text
-    print(f"Failed with status code: {response.status_code}")
-    print(response.text)
+    # Handle unsuccessful response
+    print(f"Failed with status code: {response.status_code}\n{response.text}")

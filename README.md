@@ -4,6 +4,28 @@
 This project focuses on developing APIs for statistical inferencing methods, including linear regression, multiple linear regression, and logistic regression. These APIs are designed to handle datasets ranging from 50 to 10,000 observations and offer integration with visualization tools like Plotly.
 
 ---
+## How to run:
+
+First install `venv` using the following command:
+```
+pip install virtualenv
+```
+Create a local environment and launch:
+```
+python -m venv <path-to-venv>
+# For linux and mac
+source /venv/bin/activate
+
+# For windows
+C:\ <venv>\Scripts\activate
+```
+
+Download project dependencies with the following command:
+```
+pip install -r requirements.txt
+```
+
+---
 
 ### 1. Simple Linear Regression API
 
